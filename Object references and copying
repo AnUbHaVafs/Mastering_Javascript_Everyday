@@ -1,0 +1,6 @@
+Summary :
+1). You can use : for in loop to iterate over the object's properties and clone them into new object. (for shallow copy).
+2). For deep cloning using above method : use recursion and perform the same method as in above step whenever you encounter object type in properties.
+3). Object.assign(dest, ...) - for shallow copy.
+4). structuredClone(obj) - for deep copy (not work for values as functions, undefined, symbols).
+5). Use clone = {...obj} - spread operator.
