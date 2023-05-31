@@ -1,5 +1,4 @@
-Summary :
-The main things to know:
+Summary 
 
 Garbage collection is performed automatically. We cannot force or prevent it.
 Objects are retained in memory while they are reachable.
