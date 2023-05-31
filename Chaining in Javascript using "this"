@@ -1,0 +1,69 @@
+/////////////////// Question ////////////////////////////////
+here’s a ladder object that allows to go up and down:
+
+let ladder = {
+  step: 0,
+  up() {
+    this.step++;
+  },
+  down() {
+    this.step--;
+  },
+  showStep: function() { // shows the current step
+    alert( this.step );
+  }
+};
+Now, if we need to make several calls in sequence, can do it like this:
+
+ladder.up();
+ladder.up();
+ladder.down();
+ladder.showStep(); // 1
+ladder.down();
+ladder.showStep(); // 0
+Modify the code of up, down and showStep to make the calls chainable, like this:
+
+ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0
+Such approach is widely used across JavaScript libraries.
+
+
+////////////////////////////////// SOlution ////////////////////////////////
+
+The solution is to return the object itself from every call.
+
+let ladder = {
+  step: 0,
+  up() {
+    this.step++;
+    return this;
+  },
+  down() {
+    this.step--;
+    return this;
+  },
+  showStep() {
+    alert( this.step );
+    return this;
+  }
+};
+
+ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0
+We also can write a single call per line. For long chains it’s more readable:
+
+ladder
+  .up()
+  .up()
+  .down()
+  .showStep() // 1
+  .down()
+  .showStep(); // 0
+  
+  
+Made concepts more clearer :
+
+I don't remember if it has been explained in a previous chapter of the tutorial: every function call returns something; if your function does not explicitly return a value, then it will return undefined.
+You can see that by opening the console and running console.log('something'): you'll then receive two lines as a result: one with the content of the function call (in this case, the word "something"), and, in the second line, it will show undefined, because console.log does not return anything.
+What you have to do in the exercise is to allow the function to be called over and over again, with object notation, like obj.func1().func2().func3().... This is called chaining. To do so, the object must be reachable after every function call.
+But I agree that this is a more advanced way of thinking the language -- the process itself is quite simple, but to get to it requires some more knowledge.
+  
+  
