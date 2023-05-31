@@ -1,0 +1,37 @@
+Summary :
+The main things to know:
+
+Garbage collection is performed automatically. We cannot force or prevent it.
+Objects are retained in memory while they are reachable.
+Being referenced is not the same as being reachable (from a root): a pack of interlinked objects can become unreachable as a whole, as we’ve seen in the example above.
+
+Note :
+The main concept of memory management in JavaScript is reachability.
+Simply put, “reachable” values are those that are accessible or usable somehow. They are guaranteed to be stored in memory.
+
+Now a more complex example. The family:
+
+
+//Example Best One
+//////////////////////////////////////////////
+
+function marry(man, woman) {
+  woman.husband = man;
+  man.wife = woman;
+
+  return {
+    father: man,
+    mother: woman
+  }
+}
+
+let family = marry({
+  name: "John"
+}, {
+  name: "Ann"
+});
+
+///////////////////////////////
+
+Function marry “marries” two objects by giving them references to each other and returns a new object that contains them both.
+Uses BFS
