@@ -1,0 +1,45 @@
+Example to understand :
+
+////////////////////////////////////////
+function User(name) {
+  this.name = name;
+  this.isAdmin = false;
+}
+
+let user = new User("Jack");
+
+alert(user.name); // Jack
+alert(user.isAdmin); // false
+////////////////////////////////////////
+
+When a function is executed with new, it does the following steps:
+
+A new empty object is created and assigned to this.
+The function body executes. Usually it modifies this, adds new properties to it.
+The value of this is returned.
+
+main purpose of constructors – to implement reusable object creation code.
+
+////////////////////////////////////////
+function User() {
+  alert(new.target);
+}
+
+// without "new":
+User(); // undefined
+
+// with "new":
+new User(); // function User { ... }
+//////////////////////////////////////////////
+
+let user = new User; // <-- no parentheses
+// same as
+let user = new User();
+////////////////////////////////////////////
+
+Summary
+Constructor functions or, briefly, constructors, are regular functions, but there’s a common agreement to name them with capital letter first.
+Constructor functions should only be called using new. Such a call implies a creation of empty this at the start and returning the populated one at the end.
+We can use constructor functions to make multiple similar objects.
+
+JavaScript provides constructor functions for many built-in language objects: like Date for dates, Set for sets and others that we plan to study.
