@@ -1,0 +1,29 @@
+Summary
+The optional chaining ?. syntax has three forms:
+obj?.prop – returns obj.prop if obj exists, otherwise undefined.
+obj?.[prop] – returns obj[prop] if obj exists, otherwise undefined.
+obj.method?.() – calls obj.method() if obj.method exists, otherwise returns undefined.
+As we can see, all of them are straightforward and simple to use. The ?. checks the left part for null/undefined and allows the evaluation 
+to proceed if it’s not so.
+A chain of ?. allows to safely access nested properties.\
+
+We can use ?. for safe reading and deleting, but not writing
+The optional chaining ?. has no use on the left side of an assignment.
+For example:
+
+let user = null;
+user?.name = "John"; // Error, doesn't work
+// because it evaluates to: undefined = "John"
+
+
+Code 2:
+
+// ReferenceError: user is not defined
+user?.address; 
+
+
+Point is : If you haven't declared users using let,var,const or as a function parameter then user?.address will give reference error since
+it is not declared. Else if it is declared but its null or undefined then it will return null or undefined.
+In Short, The optional chaining works only for declared variables.
+
+Note:  ?. immediately stops (“short-circuits”) the evaluation if the left part doesn’t exist.
