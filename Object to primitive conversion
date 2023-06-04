@@ -1,0 +1,14 @@
+Aim : To understand the maths operation on objects.
+
+-> obj1 + obj2 , obj1 - obj2 , alert(obj) ---> no resultant object you will get. It's a coding mistakes.
+-> Unlike Ruby or C++, we can’t implement a special object method to add two objects or perform operations on them.
+Note : 
+1. There’s no conversion to boolean. All objects are true in a boolean context, as simple as that. There exist only numeric and string conversions.
+2. The numeric conversion happens when we subtract objects or apply mathematical functions. For instance, Date objects (to be covered in the chapter Date and time) can be subtracted, and the result of date1 - date2 is the time difference between two dates.
+3. As for the string conversion – it usually happens when we output an object with alert(obj) and in similar contexts.
+
+Conversions of objects happens like :
+
+1). For an object-to-string conversion, when we’re doing an operation on an object that expects a string, like alert
+2). For an object-to-number conversion, like when we’re doing maths: let delta = date1 - date2;
+3). Default hint kuch hota hai : Occurs in rare cases when the operator is “not sure” what type to expect. For instance, binary plus + can work both with strings (concatenates them) and numbers (adds them). So if a binary plus gets an object as an argument, it uses the "default" hint to convert it.
