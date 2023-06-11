@@ -1,0 +1,25 @@
+Methods of primitives
+
+ Here’s what actually happens in str.toUpperCase():
+The string str is a primitive. So in the moment of accessing its property, a special object is created that knows the value of the string, and has useful methods, like toUpperCase().
+That method runs and returns a new string (shown by alert).
+The special object is destroyed, leaving the primitive str alone.
+So primitives can provide methods, but they still remain lightweight.
+
+////////////////////////////////////////////////
+alert( typeof 0 ); // "number"
+alert( typeof new Number(0) ); // "object"!
+////////////////////////////////////////////////
+
+////////////////////////////////////////////////
+let num = Number("123"); // convert a string to number
+////////////////////////////////////////////////
+
+
+special primitives null and undefined are exceptions. They have no corresponding “wrapper objects” and provide no methods. In a sense, they are “the most primitive”.
+////////////////////////////////////////////////
+alert(null.test); // error
+////////////////////////////////////////////////
+
+Primitives except null and undefined provide many helpful methods.
+Formally, these methods work via temporary objects, but JavaScript engines are well tuned to optimize that internally, so they are not expensive to call.
