@@ -1,0 +1,83 @@
+Its a way to search through a string of text
+/cat/g--here g is a flag for global search means find all text matching this, but without global 
+means find one , you can also use the i (case-sensitive) flag for finding the exact 
+case-sensitive text
+
+Example 1 :
+ /e+/g -- find atleast all e appearing single time, also finds the e's in consecutive row
+ /ac?/g -- finds 'a', 'ac', 'aa', 'aaaaa' ... 
+ /ac*/g -- finds a, accc, ... combination of ? , +
+ /.t/g  -- finds t everywhere and one character before it - at, ct, pt, ...etc
+ /t../g  -- finds 'tac' in 'stack' word, -- called peroid operator.
+ /t.../g -- finds 'tack' in 'stack' word,
+ What if we have to find the only fullstop '.' ? use backslash
+ /\./g -- anything comes after back slash is treated as text to search
+ "Hello I am Anubhav.", peroid operator does not work in end of line.
+ /v.../g -- nothing although v is present as last char in Anubhav but after since 'v' has nothing after it, since its a new line after it, so it returns nothing.
+ 
+Note :
+ /\w/g -- matches any word character in text, means all characters
+ /\s/g -- matches any white space 
+They also have their negative versions.
+ /\S/g -- matches anything that does not a white space.
+ /\W/g -- matches anything that does not a character ,like " ", . etc.
+
+Note: 
+ /\w{4}/g -- matches any row wise characters, that are 4 digits long.
+ /\w{4,}/g  -- matches any digits or more in a row if present 
+ /\w{4,5}/g  -- matches any set of characters of length of 4 and 5.
+ /[fc]at/g  -- matches any character f or c in start of the words that ends at 'at'.
+ /[a-zA-Z]/g -- mactes all words which starts with any character between a-z or A-Z, ends at 'at'.
+Note : Grouping and here comes the role of () these paranthesis
+ /(t|T)/g -- it means finds 't' or 'T'.
+ /(t|T)he/g -- finds 'the' and 'The'.
+
+ /(t|e|r){2,3}/g -- matches any 2 of them like 'er', 'te'... or 3 of them like 'etr', 'tre'...
+ /(t|e|r){2,3}\./g -- mataches the same as above but needs to end with '.'.
+ /(r|e){2,3}/g  -- so in word 'rererererere' it matches the 'rerere' because atmost both 'r' and 'e' can come atmost times.
+ /^T/g -- matches the sentences that starts with character 'T', note that it does not match those 'T's present in each new line for that we need to enable mutli-line flag
+ '^' -- used to search in beginning of the text.
+ '$' -- used to search at the end of the text 
+ Examples :
+ /\.$/g -- matches all those peroid characters at the end of the entire SENTENCE not in every new line.
+
+
+ Now, most useful application of Regular Expressions are : Look behind and look ahead -- both can be either pos or neg.
+ Let's see!
+ 
+ /(?<=[Tt]he)/g -- find all characters that is precceded by the 'The' or 'the', means came after 'the'.
+
+ '<' -- look behind, '=' means positve look behind.
+
+ /?<![Tt]he/g -- finds all those characters that is not preceded  by the 'the' and 'The'.
+ Look ahead : 
+ /.(?=at)/g -- any charcter that is followed by 'at'.
+ /.(?!at)/g --vice-versa
+
+ Applications :
+ Finds a number of 10 digits.
+ /\d{10}/g -- finds set of 10 digits in a row. like '1234567890'.
+ //gm -- here 'gm' : means multi-line.
+ 
+ /\d{3}-?\d{4}-?\d{4}/gm -- will match : '123-456-7890'
+ /\d{3}[ -]?\d{3}[ -]?\d{4}/gm -- will match this also : '123 456 7890'.
+ Now there may be a bug like number input can may have '-' or ' ' or nothing.
+ means all above 3 cases can happen.
+ Use groupings - to find these groups.
+ /(\d{3}[ -])?(\d{3}[ -])?(\d{4})/gm -- finds all above 3 patterns.
+
+ and then we can use these groups to arrange/order them like : $1$2$3, all 3 groups in a row.
+ but we can also name these groups as per our convinence.
+  /(?<areacode>\d{3})[ -]?(\d{3}[ -])?(\d{4})/gm
+
+ Write the RegExp for below : 
+ (123) 456-7890
+ Ans: We now just look for the circle parantheses in the first set of 3 digits.
+ /\(?(?<areacode>\d{3})\)?[ -]?(\d{3}[ -])?(\d{4})/gm
+
+Now check for :
+ +1 123 456 7890
+  /(\+1[ -])\(?(?<areacode>\d{3})\)?[ -]?(\d{3}[ -])?(\d{4})/gm
+ We notice that our +1 also contains the space at the end, which we do't want.
+  /((\+1)[ -])\(?(?<areacode>\d{3})\)?[ -]?(\d{3}[ -])?(\d{4})/gm -- now we are capturing all those +1s also with no space after it.
+  /(?:(\+1)[ -])\(?(?<areacode>\d{3})\)?[ -]?(\d{3}[ -])?(\d{4})/gm -- this is for non-capturing groups - to make sure our +1 is no longer is been captured.
