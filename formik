@@ -1,0 +1,76 @@
+formik is a short library for managing forms in react.
+useFormik() hook is a function that takes in a single object and returns the object with properties and methods.
+object passed as a paramter in hook, contains one property called 'initialValues' (camel case) that itself is an object,
+with the initial values , key are equivalent to waht we have passed as  a name attribute in all input tags and initializes the values as per requirement.
+Now in order to let the formik in react to track the input state changes and handling submissions and validation and display error messsages, 
+we need to pass onChange={} and value={} props to each input tag.
+and their values are :
+onChange={formik.handleChange}, value = {formik.values.name} , here 'name'is the value of the name attribute in the corresponding tag.
+formik.values is an object that reflects ths state of the form. This is what we are feeding back to the form fields.
+initialValues obj is mandatory.
+
+
+To handle submissions :
+we pass a prop called onSubmit={formik.handleSubmit} to the form tag.
+and onSubmit method in the parameter object. that automatically recieves all the values presemt int he formik.values as the argument that we can even console.log().
+
+
+For validation :
+we pass another property in the useFormik passed object called 'validate' , which again is a function that automatically takes in a values latest from formik.values
+and we create a validaton function to assign it to the validate property.
+
+the validate property has some conditions to satisfy, 3 are:
+1. It must return an object.
+2. The objec must contain all those keys similar to the formik.values object's keys.
+3. All keys must have string values which should represent the error messages.
+
+formik.error gives us the access to the errors/keys we defined in the validation function.
+Now the propblem is that when we are interacting with the single inpjut we are getting required display message over all the inputs which must not be displayed.
+
+
+I want the error message to be appeared only after user has interacted with it.
+In order to keep track of the visited fields we need to pass another porp called 'onBlur={formik.handleBlur}' in all the inputs to keep track of the visited fields.
+handleBlur is a method that const formik object provide us.
+
+But wait a minute !
+Where do the formik stores the track of the visited input fields by the user ? It stores it in the object called 'touched'. Which has a similar structure as formik.values object
+So similar to the formik.values and formik.errors we have the formik.touched object.
+
+Now that problem has been solved that : we will only render the error messages when the user has already visited it and if there is any error in format.
+so apply both the conditions in order. 
+formik.touched.name --> means visited and 
+formik.error.name --> means format error then
+display the error  --> formik.errors.name display!
+
+To summaries we handled the onBlur events in the input fields. 
+Then we used YUp library which is a more efficient way to write validatioh schema 
+Now, we kniow 
+ form state handling -Done
+ form submission - Done
+ form validation - Done 
+
+Reducig boiler plate code :
+replacing three lines called so :
+onBlur, onChange, value = {...formik.getFieldProps('channel')}
+
+Using components to reduce the code lines provided by formik.
+
+1. Formik conponenet : 
+wrap the entire form tag isniude the formik compo and remove rthe const formik = useFormik({...})
+after importing it and pass the small notations keys as props in formik component. 
+
+2. Form component : 
+it does the same as <form onSubmit={formik.handleSubmit} internally, so replace it ewith the form tag, that's it!.
+
+3. Field component :
+use it inplace of input, and remove the getFieldProps as props from inputs that's it.
+it does the 3 things :
+1. --> it hooks the field component with upper defined formik components.
+2. ---> it uses name attribute to match the formik states for like onBlur, onChange, value
+3. ---> Field will itself render the html inout element .
+
+behind the scenes it takes care of rendering the rrror message to the psrticular field indicate by this name prop, only if the fiesl has been visited annd the error exists, it is the abstraction of what we were achieving manually!
+as porp can accept input, textarea, select, cxustom react component.Default value of as prop is input.
+
+
+We learnt about the placeholder props, as props, render props pattern for more rendering of custom form fields.
