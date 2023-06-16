@@ -1,0 +1,14 @@
+Making the relationship between the json file having constant data and the cyrpess tests from implicit to explicit.
+If I'll change the order of the data OR If I'll add one more data, the former will results into error since the tests are written using hard-coded data and later one we are nit testing, since there is no tests for it written.
+So the current relationship is implicit and here we are going to change it to the explicit.
+Till now in fixtures, the tests are testing whether the data which is loaded is getting rendered correctly!
+
+
+/// moving on to the using high level roles instead very low-level classes.
+using testing-library, findByRole : the roles exists in the browser itself and some elements gets roles and all elements can get roles. which then we can query. instead of using specific (nested) classes structure.
+There is a variant for each query that is appended with "All"
+Now, we are no longer dependent on the browser DOM structure, rather we are only concerned about the conceptulised elements.
+You should alwasy make an assertion on top of your queries , bevasue if you don't then you will not came to know where the test has been failed and raather all remaining tests will get passed , OOPS!
+MUst use should('exists')
+
+how to access the api and the data using cypress --- means explore cy.route() and cy.server()
