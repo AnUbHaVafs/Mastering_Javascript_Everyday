@@ -1,0 +1,25 @@
+2-2 : 
+interface-vs-class in js -> 
+1. interface are strictly exists as a way for you to provide information to typescript.
+2. They are used in the compile time and not used + not even available at run time of your code.
+3. Now it can be used just like any other built-in type once you defined it.
+
+2-3 :
+Defining types using type aliases
+type aliases is an alternative way to define the types. 
+Syntax: type Alias_Name = the type you want to alias.
+
+2-4 : 
+although we define the type os status to be string, which can get values like "Active",
+"Inactive"--right, "1nactive" - wrong(typo error).
+to troubleshoot these kind of errors, we have types enum with us.
+enum ContactStatus{
+  Active,
+ Inactive,
+}
+string replace by ContactStatus.
+and now use values like :  ContactStatus.Active, ContactStatus.Inactive
+2-6 : 
+generics : It is simply a metattype, a type that represnts any other type, that you might want to substitute in.
+Allows us to replace the both types foe parameter and the return type , with the one placeholder
+
