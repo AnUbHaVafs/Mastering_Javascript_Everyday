@@ -1,1 +1,110 @@
-hello
+OOPs : ek aisi programming technique hai jahan things revolves around the entity. 
+An entity has 2 things :
+ 1. States/Properties (Names, Health, Level)
+ 2. Behaviour (Attack, Defense)
+
+Consider an example of a character in tekken game named Paul an entity which has : 
+ 1. Properties : Name, Health, Level.
+ 2. Behaviour : Attack, Defence.
+Use kyu kr rhe hain objects in programming ?
+to increase readability, maintainability, extensibility etc.
+
+Class is a 'User Defined Data Type'.
+just we say 'int a;' mean we declare a variable named a of type int. Similarly, we say, we created an object named Person of class Hero 'Hero Person'.
+meine khud ka ek custom data type bna diya jisko mein class bolta hoon. 
+instance of a class means a copy of a class.
+
+TICK_1 + TICK_2
+1. class k object ka size = uski properties k types k sizes ka sum.
+ex:
+class Hero{
+  int health;
+}
+int main(){
+  Hero h1;
+  cout<<h1.size()<<endl; // 4
+}
+
+2. Empty class k object ka size = 1.
+ex:
+class Hero{
+  // nothing
+}
+int main(){
+  Hero h1;
+  cout<<h1.size()<<endl; // 1 byte
+}
+
+TICK_3 TICK_4 TICK%:
+1. Class members can be accessed just we do in js using dot operator '.'
+2. Private is the default access modifier for the c++ class.
+Access modifiers : means where we can access the properties of the class. (data members + members functions)
+3. Public : dm/mf can be accessed inside + outside of the class.
+4. Private : dm/mf can be accessed inside the class only.
+
+TICK_OF___GETTER_AND_SETTER
+if dm/mf are private then we can't access them using the dot operator. Therefore we have getter and setter funcs.
+Example :
+
+class Hero(){
+ public:
+ int name;
+ private:
+ int health;
+
+ void getHealth(){
+    return health;
+ }
+ void setHealth(int h){
+    health=h;
+ } 
+}
+
+int main(){
+  Hero Anubhav;
+  cout<< Anubhav.getHealth() << endl;
+  Anubhav.setHealth(10);
+  cout << Anubhav.getHealth() << endl;
+return 0;
+}
+
+TICK_BTS_OF_OBJECTS:
+class Hero(){
+ public:
+ int health;
+ char level;
+}
+int main(){
+ Hero h1;
+ cout << sizeOf(h1) << endl; // 4+1=5 expected but 8 comes out!
+}
+
+WHY ?
+study 'padding' + 'greedy alignment'
+
+TICK_static and dynamic allocation 
+Creating objects(instances of class) using static and dynamic allocation
+
+int main(){
+  //static creation
+  Hero h1;
+
+  // dynamic creation of object
+
+  Just like we do :
+  int *p = new int; // a pointer 'p' of type int which has a memory location stored of heap memory which can store values of type int and size = sizeof(int)=4 byte
+  Same we can do :
+  Hero *h1 = new Hero; // pointer 'h1' of type Hero, which has memory location stored of type Hero.
+
+  // to access the values using objects created dynamically
+  // 1. Either you use " (*p).getHealth() " dereferencing the pointer or 
+  // 2. you can use '->' arrow notation.
+
+
+
+}
+
+
+
+
+
