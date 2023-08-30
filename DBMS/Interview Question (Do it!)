@@ -4,7 +4,7 @@ DBMS stands for Database Management System, is a set of applications or programs
 
 Examples of popular DBMS systems are file systems, XML, Windows Registry, etc.
 
-
+   
 RDBMS stands for Relational Database Management System and was introduced in the 1970s to access and store data more efficiently than DBMS. RDBMS stores data in the form of tables as compared to DBMS which stores data as files. Storing data as rows and columns makes it easier to locate specific values in the database and makes it more efficient as compared to DBMS.
 
 Examples of popular RDBMS systems are MySQL, Oracle DB, etc.
